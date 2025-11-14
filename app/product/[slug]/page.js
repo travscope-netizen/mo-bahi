@@ -1,3 +1,6 @@
+"use client";
+import { useCart } from "../../context/CartContext";
+
 export default function SocialShare({ book }) {
   const pageUrl = encodeURIComponent(`https://mo-bahi.vercel.app/product/${book.slug}`);
   const text = encodeURIComponent(`${book.title} – ₹${book.price}. Check it out on Mo Bahi!`);
@@ -91,6 +94,13 @@ export default async function ProductDetails({ params }) {
         </button>
       </div>
         <StructuredData book={book} />
+        <button
+  onClick={() => addToCart(book)}
+  className="mt-8 bg-black text-white px-6 py-3 rounded hover:bg-gray-800"
+>
+  Add to Cart
+</button>
+
     </div>
   );
 }
