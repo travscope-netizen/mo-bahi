@@ -1,3 +1,5 @@
+import { CartProvider } from "./context/CartContext";
+
 export const metadata = {
   metadataBase: new URL("https://mo-bahi.vercel.app"),
   title: {
