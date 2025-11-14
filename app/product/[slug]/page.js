@@ -1,5 +1,26 @@
 import { getBook } from "../../lib/api";
 
+export async function generateMetadata({ params }) {
+  const book = await getBook(params.slug);
+
+  return {
+    title: book.title,
+    description: book.description?.slice(0, 150),
+    openGraph: {
+      title: book.title,
+      description: book.description,
+      images: [book.cover_url],
+      type: "product",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: book.title,
+      description: book.description,
+      images: [book.cover_url],
+    },
+  };
+}
+
 export default async function ProductDetails({ params }) {
   const book = await getBook(params.slug);
 
@@ -14,7 +35,6 @@ export default async function ProductDetails({ params }) {
       <div>
         <h1 className="text-3xl font-bold">{book.title}</h1>
         <p className="text-gray-600 mt-2">{book.author}</p>
-
         <p className="text-2xl font-bold mt-4">₹{book.price}</p>
 
         <p className="mt-6">{book.description}</p>
