@@ -1,3 +1,21 @@
+<header className="bg-black text-white py-4 shadow">
+  <div className="max-w-6xl mx-auto flex justify-between items-center px-4">
+    <a href="/" className="text-xl font-bold tracking-wide">
+      Mo Bahi
+    </a>
+
+    <nav className="hidden md:flex gap-6 text-sm">
+      <a href="/" className="hover:text-gray-300">Home</a>
+      <a href="/categories" className="hover:text-gray-300">Categories</a>
+      <a href="/admin" className="hover:text-gray-300">Admin</a>
+    </nav>
+
+    <div className="md:hidden text-white text-2xl">
+      ☰
+    </div>
+  </div>
+</header>
+
 export const metadata = {
   title: "Mo Bahi Bookstore",
   description: "Buy new and old books online at the best price | Mo Bahi",
