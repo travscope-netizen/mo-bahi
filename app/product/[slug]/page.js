@@ -1,4 +1,5 @@
 import { getBook } from "../../lib/api";
+import StructuredData from "./StructuredData";
 
 export async function generateMetadata({ params }) {
   const book = await getBook(params.slug);
@@ -43,6 +44,7 @@ export default async function ProductDetails({ params }) {
           Add to Cart
         </button>
       </div>
+        <StructuredData book={book} />
     </div>
   );
 }
