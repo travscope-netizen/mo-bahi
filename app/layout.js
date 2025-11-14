@@ -1,3 +1,19 @@
+"use client";
+import { supabase } from "./lib/supabaseClient";
+
+function Logout() {
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    window.location.href = "/";
+  };
+
+  return (
+    <button onClick={handleLogout} className="ml-4 underline">
+      Logout
+    </button>
+  );
+}
+
 import { CartProvider } from "./context/CartContext";
 
 export const metadata = {
