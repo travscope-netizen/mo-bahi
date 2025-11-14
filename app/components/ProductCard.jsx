@@ -2,6 +2,7 @@ export default function ProductCard({ book }) {
   return (
     <div className="bg-white rounded-xl shadow hover:shadow-lg transition border p-4 w-60">
       <img
+        <p className="text-xs bg-gray-200 inline-block px-2 py-1 rounded mt-2">{book.category}</p>
         src={book.cover_url}
         alt={book.title}
         className="w-full h-72 object-cover rounded-lg"
