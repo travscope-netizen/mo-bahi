@@ -4,6 +4,15 @@ export const metadata = {
     default: "Mo Bahi – Online Bookstore in Odisha",
     template: "%s | Mo Bahi"
   },
+  <form action="/search" method="GET" className="hidden md:block">
+  <input
+    type="text"
+    name="q"
+    placeholder="Search books..."
+    className="px-3 py-2 rounded border text-black"
+  />
+</form>
+
   description: "Buy new and used books online at the best prices. Fast delivery across India.",
   openGraph: {
     title: "Mo Bahi – Online Bookstore",
