@@ -1,11 +1,17 @@
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:4000';
+const API_BASE = import.meta.env.VITE_API_BASE;
 
-export async function fetchBooks(){
-  const res = await fetch(API_BASE + '/api/books');
-  return res.json();
+export async function getBooks() {
+  const response = await fetch(`${API_BASE}/books`);
+  if (!response.ok) {
+    console.error("Failed to fetch books:", response.statusText);
+    return [];
+  }
+  const data = await response.json();
+  return data.data;  // backend sends { data: [...] }
 }
 
-export async function fetchBook(id){
-  const res = await fetch(API_BASE + '/api/books/' + id);
-  return res.json();
+export async function getBook(slug) {
+  const response = await fetch(`${API_BASE}/books/${slug}`);
+  const data = await response.json();
+  return data.data;
 }
