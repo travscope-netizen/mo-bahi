@@ -1,3 +1,17 @@
+<h2 className="text-xl font-bold mt-10 mb-4">Browse by Category</h2>
+
+<div className="flex gap-3 flex-wrap mb-10">
+  {["General", "Fiction", "Non-Fiction", "Kids", "School", "College", "Exam Prep", "Used Books"].map((cat) => (
+    <a
+      key={cat}
+      href={`/category/${cat}`}
+      className="px-4 py-2 bg-gray-200 rounded-full hover:bg-gray-300"
+    >
+      {cat}
+    </a>
+  ))}
+</div>
+
 import ProductCard from "./components/ProductCard";
 import { getBooks } from "./lib/api";
 
