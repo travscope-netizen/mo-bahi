@@ -1,3 +1,5 @@
+import { supabase } from "../lib/supabaseClient";
+
 import Link from "next/link";
 
 async function getBooks() {
@@ -50,4 +52,18 @@ export default async function AdminPage() {
       </table>
     </div>
   );
+}
+export default async function AdminPage() {
+  const { data } = await supabase.auth.getUser();
+
+  if (!data?.user) {
+    return (
+      <div className="p-6">
+        <h1 className="text-2xl font-bold">Not authorized</h1>
+        <a className="text-blue-600 underline" href="/login">Login</a>
+      </div>
+    );
+  }
+
+  // existing admin code here...
 }
