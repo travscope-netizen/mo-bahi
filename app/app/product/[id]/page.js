@@ -1,7 +1,5 @@
-import Image from "next/image";
-
 export default async function ProductPage({ params }) {
-  const { id } = params; // dynamic id → b1, b2
+  const { id } = params;
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE}/books/${id}`,
@@ -9,20 +7,19 @@ export default async function ProductPage({ params }) {
   );
 
   if (!res.ok) {
-    return <h1>Product not found</h1>;
+    return <h1>Product Not Found</h1>;
   }
 
-  const data = await res.json();
-  const book = data.data;
+  const json = await res.json();
+  const book = json.data;
 
   return (
     <div style={{ padding: "20px" }}>
       <h1>{book.title}</h1>
-      <Image
+      <img
         src={book.cover_url}
         alt={book.title}
-        width={300}
-        height={450}
+        style={{ width: "200px", borderRadius: "8px" }}
       />
       <p><b>Author:</b> {book.author}</p>
       <p><b>Price:</b> INR {book.price}</p>
