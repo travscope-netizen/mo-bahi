@@ -1,32 +1,32 @@
-import getBook from "@/app/lib/getBook";
+import Image from "next/image";
 
 export default async function ProductPage({ params }) {
-  const { id } = params;
-  const book = await getBook(id);
+  const { id } = params; // dynamic id → b1, b2
 
-  if (!book) {
-    return (
-      <div className="p-10 text-red-600 text-2xl">
-        Book Not Found
-      </div>
-    );
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE}/books/${id}`,
+    { cache: "no-store" }
+  );
+
+  if (!res.ok) {
+    return <h1>Product not found</h1>;
   }
 
-  return (
-    <div className="p-10 max-w-3xl mx-auto">
-      <h1 className="text-4xl font-bold">{book.title}</h1>
-      <p className="text-xl text-gray-700 mt-2">{book.author}</p>
+  const data = await res.json();
+  const book = data.data;
 
-      <img
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>{book.title}</h1>
+      <Image
         src={book.cover_url}
         alt={book.title}
-        className="w-64 mt-6 border shadow"
+        width={300}
+        height={450}
       />
-
-      <p className="mt-6 text-lg leading-relaxed">{book.description}</p>
-
-      <p className="mt-8 text-3xl font-bold">INR {book.price}</p>
+      <p><b>Author:</b> {book.author}</p>
+      <p><b>Price:</b> INR {book.price}</p>
+      <p><b>Description:</b> {book.description}</p>
     </div>
   );
 }
-
