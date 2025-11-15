@@ -5,9 +5,8 @@ import { notFound } from "next/navigation";
 export default async function ProductPage({ params }) {
   const { id } = params;
 
-  // Fetch book from backend API
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE}/api/books/${id}`, 
+    `${process.env.VITE_API_BASE}/api/books/${id}`,
     { cache: "no-store" }
   );
 
@@ -49,4 +48,3 @@ export default async function ProductPage({ params }) {
     </div>
   );
 }
-
